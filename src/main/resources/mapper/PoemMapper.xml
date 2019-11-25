@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fun.buma.pa.bean.data.Poem">
+    <resultMap id="PoemResultMap" type="fun.buma.pa.bean.data.Poem">
+        <id property="id" javaType="String" column="po_id"/>
+        <result property="title" javaType="String" column="po_title"/>
+        <result property="subTitle" javaType="String" column="po_subtitle"/>
+        <result property="preface" javaType="String" column="po_preface"/>
+        <result property="author" javaType="String" column="po_author"/>
+        <result property="content" javaType="String" column="po_content"/>
+    </resultMap>
+
+
+    <select id="getPoemList" resultMap="PoemResultMap">
+        select * from data_poem
+    </select>
+
+    <insert id = "insertPoem">
+        insert into data_poem
+        (po_id,po_title,po_author,po_content,po_url)
+        values
+        (#{id}, #{title}, #{author}, #{content}, #{url})
+    </insert>
+</mapper>
+

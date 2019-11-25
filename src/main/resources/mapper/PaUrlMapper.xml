@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fun.buma.pa.bean.core.PaUrl">
+    <resultMap id="PaUrlResultMap" type="fun.buma.pa.bean.core.PaUrl">
+        <id property="id" javaType="String" column="id"/>
+        <result property="func" javaType="String" column="func"/>
+        <result property="url" javaType="String" column="url"/>
+        <result property="done" javaType="int" column="done"/>
+    </resultMap>
+
+
+    <select id = "getUrlList" resultType="string">
+        select url from data_url
+        <where>
+            <if test = "func != null and func != ''">
+                and func = #{func}
+            </if>
+            <if test = "url != null and url != ''">
+                and url REGEXP #{url}
+            </if>
+            <if test = "done != null">
+                and done = #{done}
+            </if>
+        </where>
+    </select>
+
+    <select id = "getPaUrlList" resultMap="PaUrlResultMap">
+        select * from data_url
+        <where>
+            <if test = "func != null and func != ''">
+                and func = #{func}
+            </if>
+            <if test = "url != null and url != ''">
+                and url REGEXP #{url}
+            </if>
+            <if test = "done != null">
+                and done = #{done}
+            </if>
+        </where>
+    </select>
+
+    <insert id = "insertNewUrl">
+        insert into data_url
+        (id,func,url,done)
+        values
+        (#{id}, #{func}, #{url}, #{done})
+    </insert>
+</mapper>
+
