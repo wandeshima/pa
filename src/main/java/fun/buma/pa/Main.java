@@ -25,9 +25,5 @@ public class Main {
         Integer level = 0;
 //        paUrlService.insertAllByUrl(url, regex, func, level);
         paUrlService.insertAllByDateBase(null, func, level);
-
-
-
-
     }
 }
