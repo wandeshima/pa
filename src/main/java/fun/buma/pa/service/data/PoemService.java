@@ -80,7 +80,7 @@ public class PoemService {
             String c = Jsoup.clean(content.outerHtml(), wl);
             String cUrl = c.substring(c.lastIndexOf("http"));
             String cTitle = c.substring(c.lastIndexOf("《")+1, c.lastIndexOf("》"));
-            String cAuthor = c.substring(c.lastIndexOf("——")+1, c.lastIndexOf("《"));
+            String cAuthor = c.substring(c.lastIndexOf("—")+1, c.lastIndexOf("《"));
             String cContent = c.substring(0, c.lastIndexOf("——"));
 
             Poem poem = new Poem();
