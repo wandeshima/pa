@@ -93,8 +93,7 @@ public class PoemService {
             // 存诗
             insertPoem(poem);
         }
-        // 标记网址done
-        paUrlService.setUrlDone(introUrl);
+
     }
 
     /**
@@ -140,8 +139,10 @@ public class PoemService {
             session.clearCache();
             // 计数
             poemLimit++;
+            // 标记网址done
+            paUrlService.setUrlDone(poem.getUrl());
             // 打印
-            System.out.println("#" + poemLimit + " 搞到：" + poem.getTitle() + " @ " + poem.getUrl());
+            System.out.println("#" + poemLimit + "\t 搞到：" + poem.getTitle() + "\t @ " + poem.getUrl());
         } catch (Exception e) {
             e.printStackTrace();
         }
