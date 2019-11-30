@@ -6,7 +6,7 @@
  */
 package fun.buma.pa;
 
-import fun.buma.pa.service.core.PaUrlService;
+import fun.buma.pa.service.data.PoemService;
 
 /**
  * 入口.
@@ -16,14 +16,14 @@ import fun.buma.pa.service.core.PaUrlService;
  */
 public class Main {
     public static void main(String[] agrs) {
-        PaUrlService paUrlService = new PaUrlService();
+        PoemService poemService = new PoemService();
 
         //测试
         String url = "https://so.gushiwen.org/gushi/tangshi.aspx";
-        String regex = "shiwenv";
+        String regex = ".*shiwenv_.*";
         String func = "shici";
-        Integer level = 0;
-//        paUrlService.insertAllByUrl(url, regex, func, level);
-        paUrlService.insertAllByDateBase(null, func, level);
+        Integer limit = 2;
+        poemService.getPoems(url, func, regex, limit);
+
     }
 }

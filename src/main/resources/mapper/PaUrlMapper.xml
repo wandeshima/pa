@@ -11,42 +11,36 @@
         <result property="done" javaType="int" column="done"/>
     </resultMap>
 
-
-    <select id = "getUrlList" resultType="string">
-        select url from data_url
-        <where>
-            <if test = "func != null and func != ''">
-                and func = #{func}
-            </if>
-            <if test = "url != null and url != ''">
-                and url REGEXP #{url}
-            </if>
-            <if test = "done != null">
-                and done = #{done}
-            </if>
-        </where>
-    </select>
-
-    <select id = "getPaUrlList" resultMap="PaUrlResultMap">
-        select * from data_url
-        <where>
-            <if test = "func != null and func != ''">
-                and func = #{func}
-            </if>
-            <if test = "url != null and url != ''">
-                and url REGEXP #{url}
-            </if>
-            <if test = "done != null">
-                and done = #{done}
-            </if>
-        </where>
-    </select>
-
-    <insert id = "insertNewUrl">
+    <insert id="insertNewUrl">
         insert into data_url
         (id,func,url,done)
         values
         (#{id}, #{func}, #{url}, #{done})
     </insert>
+
+    <update id="updateUrlStatus">
+        update data_url u
+        set u.done = 1
+        where u.url = #{url}
+    </update>
+
+    <select id="getUrlListFromDataBase" resultType="string">
+        SELECT
+            u.url
+        FROM
+            data_url u
+        WHERE
+            u.url LIKE CONCAT('%',#{domain},'%')
+    </select>
+
+    <select id="getUrlNotDone" resultType="string">
+        SELECT
+            u.url
+        FROM
+            data_url u
+        WHERE
+            u.done = 0
+            AND u.func = #{func}
+    </select>
 </mapper>
 
