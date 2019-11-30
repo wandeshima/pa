@@ -22,7 +22,7 @@ public class Main {
         String url = "https://so.gushiwen.org/gushi/tangshi.aspx";
         String regex = ".*shiwenv_.*";
         String func = "shici";
-        Integer limit = 9;
+        Integer limit = 99999;
         poemService.getPoems(url, func, regex, limit);
 
     }

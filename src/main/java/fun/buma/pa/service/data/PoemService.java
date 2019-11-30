@@ -145,6 +145,8 @@ public class PoemService {
             System.out.println("#" + poemLimit + "\t 搞到：" + poem.getTitle() + "\t @ " + poem.getUrl());
         } catch (Exception e) {
             e.printStackTrace();
+            // 打印
+            System.out.println("失败：" + poem.getTitle() + "\t @ " + poem.getUrl());
         }
     }
 
